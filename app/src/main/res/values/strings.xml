@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Chronos</string>
+    <string name="input_hint">Enter an input string</string>
+    <string name="start">Start</string>
+    <string name="output_hint">Here will be an output</string>
+    <string name="data_output_hint">Here will be a data</string>
+    <string name="data_load_info">Every time this activity is resumed it tries to load a data. But it will not start multiple loading tasks.</string>
+    <string name="cancel">Cancel</string>
+</resources>
