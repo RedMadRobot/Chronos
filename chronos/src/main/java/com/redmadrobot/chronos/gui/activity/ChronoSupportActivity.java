@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Contract;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.FragmentActivity;
 
 /**
  * An ActionBarActivity that is connected to Chronos.
@@ -18,7 +18,7 @@ import android.support.v7.app.ActionBarActivity;
  * @see ChronoActivity
  */
 @SuppressWarnings("unused")
-public abstract class ChronoActionBarActivity extends ActionBarActivity {
+public abstract class ChronoSupportActivity extends FragmentActivity {
 
     /**
      * An entry point to access Chronos functions.

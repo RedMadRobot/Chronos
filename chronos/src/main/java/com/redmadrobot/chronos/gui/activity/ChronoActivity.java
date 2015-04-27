@@ -14,7 +14,7 @@ import android.support.annotation.NonNull;
  * An Activity that is connected to Chronos.
  *
  * @author maximefimov
- * @see ChronoActionBarActivity
+ * @see ChronoSupportActivity
  */
 @SuppressWarnings("unused")
 public abstract class ChronoActivity extends Activity {
