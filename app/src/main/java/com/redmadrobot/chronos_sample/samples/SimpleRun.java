@@ -1,6 +1,6 @@
 package com.redmadrobot.chronos_sample.samples;
 
-import com.redmadrobot.chronos.gui.activity.ChronoActivity;
+import com.redmadrobot.chronos.gui.activity.ChronosActivity;
 import com.redmadrobot.chronos_sample.R;
 import com.redmadrobot.chronos_sample.operations.SimpleOperation;
 
@@ -14,7 +14,7 @@ import android.widget.TextView;
  *
  * @author maximefimov
  */
-public final class SimpleRun extends ChronoActivity {
+public final class SimpleRun extends ChronosActivity {
 
     private TextView mTextOutput;
 

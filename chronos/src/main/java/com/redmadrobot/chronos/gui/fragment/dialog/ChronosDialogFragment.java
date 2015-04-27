@@ -1,72 +1,77 @@
-package com.redmadrobot.chronos.gui.activity;
+package com.redmadrobot.chronos.gui.fragment.dialog;
 
 import com.redmadrobot.chronos.ChronosConnector;
-import com.redmadrobot.chronos.Operation;
+import com.redmadrobot.chronos.ChronosOperation;
 import com.redmadrobot.chronos.gui.ChronosConnectorWrapper;
+import com.redmadrobot.chronos.gui.fragment.ChronosFragment;
+import com.redmadrobot.chronos.gui.fragment.ChronosSupportFragment;
 
 import org.jetbrains.annotations.Contract;
 
-import android.app.Activity;
+import android.annotation.TargetApi;
+import android.app.DialogFragment;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 /**
- * An Activity that is connected to Chronos.
+ * A DialogFragment that is connected to Chronos.
  *
  * @author maximefimov
- * @see ChronoSupportActivity
+ * @see ChronosFragment
+ * @see ChronosSupportDialogFragment
+ * @see ChronosSupportFragment
  */
 @SuppressWarnings("unused")
-public abstract class ChronoActivity extends Activity implements ChronosConnectorWrapper {
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+public abstract class ChronosDialogFragment extends DialogFragment implements
+        ChronosConnectorWrapper {
 
-    /**
-     * An entry point to access Chronos functions.
-     */
     private final ChronosConnector mConnector = new ChronosConnector();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mConnector.onCreate(this, savedInstanceState);
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        mConnector.onResume();
-    }
-
-    @Override
-    protected void onSaveInstanceState(@NonNull final Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         mConnector.onSaveInstanceState(outState);
     }
 
     @Override
-    protected void onPause() {
+    public void onResume() {
+        super.onResume();
+        mConnector.onResume();
+    }
+
+    @Override
+    public void onPause() {
         mConnector.onPause();
         super.onPause();
     }
 
     @Override
-    public final int runOperation(@NonNull final Operation operation,
+    public final int runOperation(@NonNull final ChronosOperation operation,
             @NonNull final String tag) {
         return mConnector.runOperation(operation, tag, false);
     }
 
     @Override
-    public final int runOperation(@NonNull final Operation operation) {
+    public final int runOperation(@NonNull final ChronosOperation operation) {
         return mConnector.runOperation(operation, false);
     }
 
     @Override
-    public final int runOperationBroadcast(@NonNull final Operation operation,
+    public final int runOperationBroadcast(@NonNull final ChronosOperation operation,
             @NonNull final String tag) {
         return mConnector.runOperation(operation, tag, true);
     }
 
     @Override
-    public final int runOperationBroadcast(@NonNull final Operation operation) {
+    public final int runOperationBroadcast(@NonNull final ChronosOperation operation) {
         return mConnector.runOperation(operation, true);
     }
 

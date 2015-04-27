@@ -2,7 +2,7 @@ package com.redmadrobot.chronos.mock.gui;
 
 import com.redmadrobot.chronos.Chronos;
 import com.redmadrobot.chronos.ChronosConnector;
-import com.redmadrobot.chronos.Operation;
+import com.redmadrobot.chronos.ChronosOperation;
 
 import org.jetbrains.annotations.Contract;
 
@@ -97,7 +97,7 @@ public abstract class MockActivity {
     /**
      * Runs an operation in a background thread. Only one operation with the given tag may run in a
      * single moment of time. The result will be delivered to {@link Chronos#OWN_CALLBACK_METHOD_NAME}
-     * method. This method must have only one parameter of type {@link Operation#getResultClass()}
+     * method. This method must have only one parameter of type {@link ChronosOperation#getResultClass()}
      * to receive a result.
      *
      * @param operation an operation to be run in background
@@ -105,13 +105,13 @@ public abstract class MockActivity {
      *                  is a running one
      * @return a unique launch id, may be the same with the previous run with the same tag, if the
      * operation is still running
-     * @see #runOperation(Operation)
-     * @see #runOperationBroadcast(Operation, String)
+     * @see #runOperation(ChronosOperation)
+     * @see #runOperationBroadcast(ChronosOperation, String)
      * @see #cancelOperation(int)
      * @see #cancelOperation(String)
      */
     @SuppressWarnings("unused")
-    protected final int runOperation(@NonNull final Operation operation,
+    protected final int runOperation(@NonNull final ChronosOperation operation,
             @NonNull final String tag) {
         return mHelper.runOperation(operation, tag, false);
     }
@@ -119,16 +119,16 @@ public abstract class MockActivity {
     /**
      * Runs an operation in a background thread. The result will be delivered to {@link
      * Chronos#OWN_CALLBACK_METHOD_NAME} method. This method must have only one parameter of type
-     * {@link Operation#getResultClass()} to receive a result.
+     * {@link ChronosOperation#getResultClass()} to receive a result.
      *
      * @param operation an operation to be run in background
      * @return a unique launch id
-     * @see #runOperation(Operation, String)
-     * @see #runOperationBroadcast(Operation)
+     * @see #runOperation(ChronosOperation, String)
+     * @see #runOperationBroadcast(ChronosOperation)
      * @see #cancelOperation(int)
      */
     @SuppressWarnings("unused")
-    protected final int runOperation(@NonNull final Operation operation) {
+    protected final int runOperation(@NonNull final ChronosOperation operation) {
         return mHelper.runOperation(operation, false);
     }
 
@@ -137,20 +137,20 @@ public abstract class MockActivity {
      * operation with the given tag may run in a single moment of time. The result will be delivered
      * to {@link Chronos#OWN_CALLBACK_METHOD_NAME} method. All other Chronos clients will receive
      * the result in {@link Chronos#BROADCAST_CALLBACK_METHOD_NAME} method. Both method must have
-     * only one parameter of type {@link Operation#getResultClass()} to receive a result.
+     * only one parameter of type {@link ChronosOperation#getResultClass()} to receive a result.
      *
      * @param operation an operation to be run in background
      * @param tag       value which prohibits running new operations with the same tag while there
      *                  is a running one
      * @return a unique launch id, may be the same with the previous run with the same tag, if the
      * operation is still running
-     * @see #runOperationBroadcast(Operation)
-     * @see #runOperation(Operation, String)
+     * @see #runOperationBroadcast(ChronosOperation)
+     * @see #runOperation(ChronosOperation, String)
      * @see #cancelOperation(int)
      * @see #cancelOperation(String)
      */
     @SuppressWarnings("unused")
-    protected final int runOperationBroadcast(@NonNull final Operation operation,
+    protected final int runOperationBroadcast(@NonNull final ChronosOperation operation,
             @NonNull final String tag) {
         return mHelper.runOperation(operation, tag, true);
     }
@@ -159,17 +159,17 @@ public abstract class MockActivity {
      * Runs an operation in a background thread, and broadcast it result when finished. The result
      * will be delivered to {@link Chronos#OWN_CALLBACK_METHOD_NAME} method. All other Chronos
      * clients will receive the result in {@link Chronos#BROADCAST_CALLBACK_METHOD_NAME} method.
-     * Both method must have only one parameter of type {@link Operation#getResultClass()} to
+     * Both method must have only one parameter of type {@link ChronosOperation#getResultClass()} to
      * receive a result.
      *
      * @param operation an operation to be run in background
      * @return a unique launch id
-     * @see #runOperation(Operation)
-     * @see #runOperationBroadcast(Operation, String)
+     * @see #runOperation(ChronosOperation)
+     * @see #runOperationBroadcast(ChronosOperation, String)
      * @see #cancelOperation(int)
      */
     @SuppressWarnings("unused")
-    protected final int runOperationBroadcast(@NonNull final Operation operation) {
+    protected final int runOperationBroadcast(@NonNull final ChronosOperation operation) {
         return mHelper.runOperation(operation, true);
     }
 
@@ -182,10 +182,10 @@ public abstract class MockActivity {
      * @return {@code false} if the task could not be cancelled, typically because it has already
      * completed normally; {@code true} otherwise
      * @see #cancelOperation(String)
-     * @see #runOperation(Operation)
-     * @see #runOperation(Operation, String)
-     * @see #runOperationBroadcast(Operation)
-     * @see #runOperationBroadcast(Operation, String)
+     * @see #runOperation(ChronosOperation)
+     * @see #runOperation(ChronosOperation, String)
+     * @see #runOperationBroadcast(ChronosOperation)
+     * @see #runOperationBroadcast(ChronosOperation, String)
      */
     @SuppressWarnings("unused")
     protected final boolean cancelOperation(final int id) {
@@ -201,10 +201,10 @@ public abstract class MockActivity {
      * @return {@code false} if the task could not be cancelled, typically because it has already
      * completed normally or there is no running operation with a given tag; {@code true} otherwise
      * @see #cancelOperation(int)
-     * @see #runOperation(Operation)
-     * @see #runOperation(Operation, String)
-     * @see #runOperationBroadcast(Operation)
-     * @see #runOperationBroadcast(Operation, String)
+     * @see #runOperation(ChronosOperation)
+     * @see #runOperation(ChronosOperation, String)
+     * @see #runOperationBroadcast(ChronosOperation)
+     * @see #runOperationBroadcast(ChronosOperation, String)
      */
     @SuppressWarnings("unused")
     protected final boolean cancelOperation(@NonNull final String tag) {

@@ -146,7 +146,7 @@ final class ChronosListener {
      * @param operationResult the result to process
      */
     @SuppressWarnings("unused")
-    public final void onEventMainThread(@Nullable final OperationResult<?> operationResult) {
+    public final void onEventMainThread(@Nullable final ChronosOperationResult<?> operationResult) {
         if (operationResult == null) {
             //somehow the bus delivered us a null object, it should be ignored
             return;
@@ -181,10 +181,10 @@ final class ChronosListener {
      * @param broadcastResult {@code true} if the result should be broadcasted, {@code false}
      *                        otherwise
      * @return a unique launch id
-     * @see #invoke(Operation, String, boolean)
+     * @see #invoke(ChronosOperation, String, boolean)
      * @see #cancel(int, boolean)
      */
-    public final int invoke(@NonNull final Operation<?> operation,
+    public final int invoke(@NonNull final ChronosOperation<?> operation,
             final boolean broadcastResult) {
         logd("invoking untagged operation");
         final int id = ChronosService.getInstance().runAsync(operation, broadcastResult);
@@ -202,11 +202,11 @@ final class ChronosListener {
      *                        otherwise
      * @return a launch id, may be the same with the previous call of the method, if the operation
      * with the same tag is still running
-     * @see #invoke(Operation, boolean)
+     * @see #invoke(ChronosOperation, boolean)
      * @see #cancel(int, boolean)
      * @see #cancel(String, boolean)
      */
-    public final int invoke(@NonNull final Operation<?> operation, @NonNull final String tag,
+    public final int invoke(@NonNull final ChronosOperation<?> operation, @NonNull final String tag,
             final boolean broadcastResult) {
         logd("invoking tagged operation, tag=" + tag);
         final Integer savedId = mTaggedRequests.get(tag);
@@ -230,8 +230,8 @@ final class ChronosListener {
      *                     otherwise, in-progress tasks are allowed to complete
      * @return {@code false} if the task could not be cancelled, typically because it has already
      * completed normally; {@code true} otherwise
-     * @see #invoke(Operation, boolean)
-     * @see #invoke(Operation, String, boolean)
+     * @see #invoke(ChronosOperation, boolean)
+     * @see #invoke(ChronosOperation, String, boolean)
      * @see #cancel(String, boolean)
      * @see Chronos#cancelAll(boolean)
      */
@@ -253,8 +253,8 @@ final class ChronosListener {
      *                     otherwise, in-progress tasks are allowed to complete
      * @return {@code false} if the task could not be cancelled, typically because it has already
      * completed normally or there is no running operation with a given tag; {@code true} otherwise
-     * @see #invoke(Operation, boolean)
-     * @see #invoke(Operation, String, boolean)
+     * @see #invoke(ChronosOperation, boolean)
+     * @see #invoke(ChronosOperation, String, boolean)
      * @see #cancel(int, boolean)
      * @see Chronos#cancelAll(boolean)
      */
@@ -365,7 +365,7 @@ final class ChronosListener {
      *                         is no suitable method in the bound client; {@code false} otherwise
      */
     @SuppressWarnings("TryWithIdenticalCatches")
-    private void deliverResult(@NonNull final OperationResult<?> operationResult,
+    private void deliverResult(@NonNull final ChronosOperationResult<?> operationResult,
             @NonNull final String methodName, final boolean warnIfNoCallback) {
         final Class listenerClass = mServiceListener.getClass();
         final Method[] listenerMethods = listenerClass.getMethods();
@@ -415,12 +415,12 @@ final class ChronosListener {
     private final static class OperationDelivery<T> {
 
         @NonNull
-        private final OperationResult<T> mResult;
+        private final ChronosOperationResult<T> mResult;
 
         @NonNull
         private final DeliveryMode mDeliveryMode;
 
-        private OperationDelivery(@NonNull final OperationResult<T> result,
+        private OperationDelivery(@NonNull final ChronosOperationResult<T> result,
                 @NonNull final DeliveryMode deliveryMode) {
             mResult = result;
             mDeliveryMode = deliveryMode;
@@ -428,7 +428,7 @@ final class ChronosListener {
 
         @NonNull
         @Contract(pure = true)
-        public final OperationResult<T> getResult() {
+        public final ChronosOperationResult<T> getResult() {
             return mResult;
         }
 

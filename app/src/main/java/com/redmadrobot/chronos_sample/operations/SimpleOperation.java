@@ -1,7 +1,7 @@
 package com.redmadrobot.chronos_sample.operations;
 
-import com.redmadrobot.chronos.Operation;
-import com.redmadrobot.chronos.OperationResult;
+import com.redmadrobot.chronos.ChronosOperation;
+import com.redmadrobot.chronos.ChronosOperationResult;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,7 +11,7 @@ import android.support.annotation.Nullable;
  *
  * @author maximefimov
  */
-public final class SimpleOperation extends Operation<String> {
+public final class SimpleOperation extends ChronosOperation<String> {
 
     private final String mInput;
 
@@ -42,11 +42,11 @@ public final class SimpleOperation extends Operation<String> {
     // you should create an 'OperationResult<>' subclass in each operation,
     // so that it will be used as a parameter
     // in a callback method 'onOperationFinished'
-    public Class<? extends OperationResult<String>> getResultClass() {
+    public Class<? extends ChronosOperationResult<String>> getResultClass() {
         return Result.class;
     }
 
-    public final static class Result extends OperationResult<String> {
+    public final static class Result extends ChronosOperationResult<String> {
 
     }
 }

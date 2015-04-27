@@ -65,7 +65,7 @@ final class RunningOperationStorage {
      * @param id     the unique id of an operation launch
      * @param future the object that represents a running operation
      */
-    synchronized final void operationStarted(final int id, @NonNull final Operation<?> operation,
+    synchronized final void operationStarted(final int id, @NonNull final ChronosOperation<?> operation,
             @NonNull final Future<?> future
     ) {
         mRunningOperations.put(id, new RunningOperation(operation, future));
@@ -131,11 +131,11 @@ final class RunningOperationStorage {
 
     private static class RunningOperation {
 
-        private final Operation<?> mOperation;
+        private final ChronosOperation<?> mOperation;
 
         private final Future<?> mFuture;
 
-        public RunningOperation(@NonNull final Operation<?> operation,
+        public RunningOperation(@NonNull final ChronosOperation<?> operation,
                 @NonNull final Future<?> future) {
             mOperation = operation;
             mFuture = future;

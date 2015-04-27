@@ -1,6 +1,6 @@
 package com.redmadrobot.chronos.mock.operation;
 
-import com.redmadrobot.chronos.OperationResult;
+import com.redmadrobot.chronos.ChronosOperationResult;
 import com.redmadrobot.chronos.mock.BigObject;
 
 /**
@@ -8,6 +8,6 @@ import com.redmadrobot.chronos.mock.BigObject;
  *
  * @author maximefimov
  */
-public final class HeavyOperationResult extends OperationResult<BigObject> {
+public final class HeavyOperationResult extends ChronosOperationResult<BigObject> {
 
 }

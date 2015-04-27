@@ -39,8 +39,8 @@ public final class Chronos {
      * during the execution
      */
     @NonNull
-    public static <Output> OperationResult<Output> run(
-            @NonNull final Operation<Output> operation) {
+    public static <Output> ChronosOperationResult<Output> run(
+            @NonNull final ChronosOperation<Output> operation) {
         return ChronosService.getInstance().runSync(operation, false);
     }
 
@@ -54,8 +54,8 @@ public final class Chronos {
      * during the execution
      */
     @NonNull
-    public static <Output> OperationResult<Output> runBroadcast(
-            @NonNull final Operation<Output> operation) {
+    public static <Output> ChronosOperationResult<Output> runBroadcast(
+            @NonNull final ChronosOperation<Output> operation) {
         return ChronosService.getInstance().runSync(operation, true);
     }
 }

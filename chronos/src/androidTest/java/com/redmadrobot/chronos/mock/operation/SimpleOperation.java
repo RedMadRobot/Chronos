@@ -1,7 +1,7 @@
 package com.redmadrobot.chronos.mock.operation;
 
-import com.redmadrobot.chronos.Operation;
-import com.redmadrobot.chronos.OperationResult;
+import com.redmadrobot.chronos.ChronosOperation;
+import com.redmadrobot.chronos.ChronosOperationResult;
 import com.redmadrobot.chronos.TestSettings;
 
 import android.support.annotation.NonNull;
@@ -14,7 +14,7 @@ import static com.redmadrobot.chronos.util.TimingUtils.sleep;
  *
  * @author maximefimov
  */
-public final class SimpleOperation extends Operation<String> {
+public final class SimpleOperation extends ChronosOperation<String> {
 
     private final String mInput;
 
@@ -41,7 +41,7 @@ public final class SimpleOperation extends Operation<String> {
 
     @NonNull
     @Override
-    public Class<? extends OperationResult<String>> getResultClass() {
+    public Class<? extends ChronosOperationResult<String>> getResultClass() {
         return SimpleOperationResult.class;
     }
 

@@ -65,7 +65,7 @@ public final class ChronosConnector {
      * single moment of time. The result will be delivered to {@link Chronos#OWN_CALLBACK_METHOD_NAME}
      * method. If {@code broadcast} is {@code true} all other Chronos clients will receive the
      * result in {@link Chronos#BROADCAST_CALLBACK_METHOD_NAME} method. Both method must have only
-     * one parameter of type {@link Operation#getResultClass()} to receive a result.
+     * one parameter of type {@link ChronosOperation#getResultClass()} to receive a result.
      *
      * @param operation an operation to be run in background
      * @param tag       value which prohibits running new operations with the same tag while there
@@ -74,11 +74,11 @@ public final class ChronosConnector {
      *                  result; {@code false} otherwise
      * @return a unique launch id, may be the same with the previous run with the same tag, if the
      * operation is still running
-     * @see #runOperation(Operation, boolean)
+     * @see #runOperation(ChronosOperation, boolean)
      * @see #cancelOperation(int, boolean)
      * @see #cancelOperation(String, boolean)
      */
-    public final int runOperation(@NonNull final Operation operation, @NonNull final String tag,
+    public final int runOperation(@NonNull final ChronosOperation operation, @NonNull final String tag,
             final boolean broadcast) {
         return mChronosListener.invoke(operation, tag, broadcast);
     }
@@ -87,17 +87,17 @@ public final class ChronosConnector {
      * Runs an operation in a background thread. The result will be delivered to {@link
      * Chronos#OWN_CALLBACK_METHOD_NAME} method. If {@code broadcast} is {@code true} all other
      * Chronos clients will receive the result in {@link Chronos#BROADCAST_CALLBACK_METHOD_NAME}
-     * method. Both method must have only one parameter of type {@link Operation#getResultClass()}
+     * method. Both method must have only one parameter of type {@link ChronosOperation#getResultClass()}
      * to receive a result.
      *
      * @param operation an operation to be run in background
      * @param broadcast {@code true} if any other Chronos clients should be able to receive a
      *                  result; {@code false} otherwise
      * @return a unique launch id
-     * @see #runOperation(Operation, String, boolean)
+     * @see #runOperation(ChronosOperation, String, boolean)
      * @see #cancelOperation(int, boolean)
      */
-    public final int runOperation(@NonNull final Operation operation, final boolean broadcast) {
+    public final int runOperation(@NonNull final ChronosOperation operation, final boolean broadcast) {
         return mChronosListener.invoke(operation, broadcast);
     }
 
@@ -111,8 +111,8 @@ public final class ChronosConnector {
      *                     otherwise, in-progress tasks are allowed to complete
      * @return {@code false} if the task could not be cancelled, typically because it has already
      * completed normally; {@code true} otherwise
-     * @see #runOperation(Operation, String, boolean)
-     * @see #runOperation(Operation, boolean)
+     * @see #runOperation(ChronosOperation, String, boolean)
+     * @see #runOperation(ChronosOperation, boolean)
      * @see #cancelOperation(String, boolean)
      */
     public final boolean cancelOperation(final int id, final boolean mayInterrupt) {
@@ -129,8 +129,8 @@ public final class ChronosConnector {
      *                     otherwise, in-progress tasks are allowed to complete
      * @return {@code false} if the task could not be cancelled, typically because it has already
      * completed normally or there is no running operation with a given tag; {@code true} otherwise
-     * @see #runOperation(Operation, String, boolean)
-     * @see #runOperation(Operation, boolean)
+     * @see #runOperation(ChronosOperation, String, boolean)
+     * @see #runOperation(ChronosOperation, boolean)
      * @see #cancelOperation(int, boolean)
      */
     public final boolean cancelOperation(@NonNull final String tag, final boolean mayInterrupt) {

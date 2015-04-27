@@ -1,7 +1,7 @@
 package com.redmadrobot.chronos.mock.operation;
 
-import com.redmadrobot.chronos.Operation;
-import com.redmadrobot.chronos.OperationResult;
+import com.redmadrobot.chronos.ChronosOperation;
+import com.redmadrobot.chronos.ChronosOperationResult;
 import com.redmadrobot.chronos.TestSettings;
 
 import org.jetbrains.annotations.Contract;
@@ -16,7 +16,7 @@ import static com.redmadrobot.chronos.util.TimingUtils.sleep;
  *
  * @author maximefimov
  */
-public final class SimpleErrorOperation extends Operation<String> {
+public final class SimpleErrorOperation extends ChronosOperation<String> {
 
     private final static RuntimeException EXCEPTION = new RuntimeException("Test exception");
 
@@ -34,7 +34,7 @@ public final class SimpleErrorOperation extends Operation<String> {
 
     @NonNull
     @Override
-    public Class<? extends OperationResult<String>> getResultClass() {
+    public Class<? extends ChronosOperationResult<String>> getResultClass() {
         return SimpleOperationResult.class;
     }
 }

@@ -45,8 +45,8 @@ final class ChronosService {
      * @param operationResult an empty result object to be filled with business-logic content
      * @param <Output>        class of the result, returned by the Operations' {@code run} method
      */
-    private static <Output> void silentRun(@NonNull final Operation<Output> operation,
-            @NonNull final OperationResult<Output> operationResult) {
+    private static <Output> void silentRun(@NonNull final ChronosOperation<Output> operation,
+            @NonNull final ChronosOperationResult<Output> operationResult) {
         try {
             final Output output = operation.run();
             operationResult.setOutput(output);
@@ -66,10 +66,10 @@ final class ChronosService {
      */
     @NonNull
     @Contract(pure = true)
-    private <Output> OperationResult<Output> createEmptyResult(
-            @NonNull final Operation<Output> operation, final boolean broadcastResult) {
-        final OperationResult<Output> operationResult;
-        final Class<? extends OperationResult<Output>> resultClass = operation.getResultClass();
+    private <Output> ChronosOperationResult<Output> createEmptyResult(
+            @NonNull final ChronosOperation<Output> operation, final boolean broadcastResult) {
+        final ChronosOperationResult<Output> operationResult;
+        final Class<? extends ChronosOperationResult<Output>> resultClass = operation.getResultClass();
         try {
             operationResult = resultClass.newInstance();
         } catch (InstantiationException e) {
@@ -93,9 +93,9 @@ final class ChronosService {
      *                        otherwise
      * @return the unique id of the launch
      */
-    final <Output> int runAsync(@NonNull final Operation<Output> operation,
+    final <Output> int runAsync(@NonNull final ChronosOperation<Output> operation,
             final boolean broadcastResult) {
-        final OperationResult<Output> result = createEmptyResult(operation, broadcastResult);
+        final ChronosOperationResult<Output> result = createEmptyResult(operation, broadcastResult);
         final int id = result.getId();
 
         RunningOperationStorage.getInstance().operationStarted(id, operation,
@@ -120,9 +120,9 @@ final class ChronosService {
      * @return operations' result
      */
     @NonNull
-    final <Output> OperationResult<Output> runSync(
-            @NonNull final Operation<Output> operation, final boolean broadcastResult) {
-        final OperationResult<Output> result = createEmptyResult(operation, broadcastResult);
+    final <Output> ChronosOperationResult<Output> runSync(
+            @NonNull final ChronosOperation<Output> operation, final boolean broadcastResult) {
+        final ChronosOperationResult<Output> result = createEmptyResult(operation, broadcastResult);
 
         silentRun(operation, result);
         mEventBus.post(result);

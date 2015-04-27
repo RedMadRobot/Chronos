@@ -1,7 +1,7 @@
 package com.redmadrobot.chronos.mock.operation;
 
-import com.redmadrobot.chronos.Operation;
-import com.redmadrobot.chronos.OperationResult;
+import com.redmadrobot.chronos.ChronosOperation;
+import com.redmadrobot.chronos.ChronosOperationResult;
 import com.redmadrobot.chronos.TestSettings;
 import com.redmadrobot.chronos.mock.BigObject;
 
@@ -17,7 +17,7 @@ import static com.redmadrobot.chronos.util.TimingUtils.sleep;
  *
  * @author maximefimov
  */
-public final class HeavyOperation extends Operation<BigObject> {
+public final class HeavyOperation extends ChronosOperation<BigObject> {
 
     private boolean hasOutOfMemory = false;
 
@@ -41,7 +41,7 @@ public final class HeavyOperation extends Operation<BigObject> {
 
     @NonNull
     @Override
-    public Class<? extends OperationResult<BigObject>> getResultClass() {
+    public Class<? extends ChronosOperationResult<BigObject>> getResultClass() {
         return HeavyOperationResult.class;
     }
 }

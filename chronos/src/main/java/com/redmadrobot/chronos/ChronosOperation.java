@@ -14,12 +14,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *
  * @param <Output> Type of the output object.
  * @author maximefimov
- * @see ChronosListener#invoke(Operation, boolean)
- * @see ChronosListener#invoke(Operation, String, boolean)
- * @see Chronos#run(Operation)
- * @see Chronos#runBroadcast(Operation)
+ * @see ChronosListener#invoke(ChronosOperation, boolean)
+ * @see ChronosListener#invoke(ChronosOperation, String, boolean)
+ * @see Chronos#run(ChronosOperation)
+ * @see Chronos#runBroadcast(ChronosOperation)
  */
-public abstract class Operation<Output> {
+public abstract class ChronosOperation<Output> {
 
 
     private final AtomicBoolean mIsCancelled = new AtomicBoolean(false);
@@ -45,7 +45,7 @@ public abstract class Operation<Output> {
      */
     @NonNull
     @Contract(pure = true)
-    public abstract Class<? extends OperationResult<Output>> getResultClass();
+    public abstract Class<? extends ChronosOperationResult<Output>> getResultClass();
 
     /**
      * Checks if the operation was cancelled.
