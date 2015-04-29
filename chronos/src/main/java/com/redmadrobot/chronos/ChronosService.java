@@ -69,7 +69,8 @@ final class ChronosService {
     private <Output> ChronosOperationResult<Output> createEmptyResult(
             @NonNull final ChronosOperation<Output> operation, final boolean broadcastResult) {
         final ChronosOperationResult<Output> operationResult;
-        final Class<? extends ChronosOperationResult<Output>> resultClass = operation.getResultClass();
+        final Class<? extends ChronosOperationResult<Output>> resultClass = operation
+                .getResultClass();
         try {
             operationResult = resultClass.newInstance();
         } catch (InstantiationException e) {
@@ -98,15 +99,19 @@ final class ChronosService {
         final ChronosOperationResult<Output> result = createEmptyResult(operation, broadcastResult);
         final int id = result.getId();
 
-        RunningOperationStorage.getInstance().operationStarted(id, operation,
-                mExecutorService.submit(new Runnable() {
-                    @Override
-                    public void run() {
-                        silentRun(operation, result);
-                        mEventBus.post(result);
-                        RunningOperationStorage.getInstance().operationFinished(id);
-                    }
-                }));
+        synchronized (ChronosService.this) {
+            RunningOperationStorage.getInstance().operationStarted(id, operation,
+                    mExecutorService.submit(new Runnable() {
+                        @Override
+                        public void run() {
+                            silentRun(operation, result);
+                            mEventBus.post(result);
+                            synchronized (ChronosService.this) {
+                                RunningOperationStorage.getInstance().operationFinished(id);
+                            }
+                        }
+                    }));
+        }
         return id;
     }
 
