@@ -3,7 +3,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 // This is the library version used when deploying the artifact
-version = "1.0.0"
+version = "1.0.5"
 
 
 android {
@@ -36,7 +36,8 @@ install {
                 packaging 'aar'
 
                 // Add your description here
-                name 'Library that handles asynchronous tasks in a proper way'
+                name 'Chronos'
+                description 'Android library that handles asynchronous tasks in a proper way'
                 url siteUrl
 
                 // Set your license
@@ -107,14 +108,22 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
+    def gpgPassphrase = properties.getProperty("oss.password")
 
     configurations = ['archives']
     pkg {
         repo = "maven"
         name = "chronos"
+        desc = 'Android library that handles asynchronous tasks in a proper way'
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["MIT"]
         publish = true
+        version {
+            gpg {
+                sign = true //Determines whether to GPG sign the files. The default is false
+                passphrase = gpgPassphrase //Optional. The passphrase for GPG signing'
+            }
+        }
     }
 }
