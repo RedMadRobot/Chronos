@@ -9,16 +9,16 @@ import org.jetbrains.annotations.Contract;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 
 /**
- * An FragmentActivity that is connected to Chronos.
+ * An AppCompatActivity that is connected to Chronos.
  *
  * @author maximefimov
  * @see ChronosActivity
  */
 @SuppressWarnings("unused")
-public abstract class ChronosSupportActivity extends FragmentActivity implements
+public abstract class ChronosAppCompatActivity extends AppCompatActivity implements
         ChronosConnectorWrapper {
 
     /**
