@@ -6,7 +6,6 @@ import com.redmadrobot.chronos.gui.ChronosConnectorWrapper;
 import com.redmadrobot.chronos.gui.fragment.dialog.ChronosDialogFragment;
 import com.redmadrobot.chronos.gui.fragment.dialog.ChronosSupportDialogFragment;
 
-import org.jetbrains.annotations.Contract;
 
 import android.annotation.TargetApi;
 import android.app.Fragment;
@@ -86,13 +85,11 @@ public abstract class ChronosFragment extends Fragment implements
     }
 
     @Override
-    @Contract(pure = true)
     public final boolean isOperationRunning(final int id) {
         return mConnector.isOperationRunning(id);
     }
 
     @Override
-    @Contract(pure = true)
     public final boolean isOperationRunning(@NonNull final String tag) {
         return mConnector.isOperationRunning(tag);
     }

@@ -4,7 +4,6 @@ import com.redmadrobot.chronos.ChronosConnector;
 import com.redmadrobot.chronos.ChronosOperation;
 import com.redmadrobot.chronos.gui.ChronosConnectorWrapper;
 
-import org.jetbrains.annotations.Contract;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -83,13 +82,11 @@ public abstract class ChronosAppCompatActivity extends AppCompatActivity impleme
     }
 
     @Override
-    @Contract(pure = true)
     public final boolean isOperationRunning(final int id) {
         return mConnector.isOperationRunning(id);
     }
 
     @Override
-    @Contract(pure = true)
     public final boolean isOperationRunning(@NonNull final String tag) {
         return mConnector.isOperationRunning(tag);
     }

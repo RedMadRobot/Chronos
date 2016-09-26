@@ -1,6 +1,5 @@
 package com.redmadrobot.chronos;
 
-import org.jetbrains.annotations.Contract;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -32,7 +31,6 @@ public abstract class ChronosOperationResult<ResultType> {
      * operation.
      */
     @SuppressWarnings("unused")
-    @Contract(pure = true)
     public final ResultType getOutput() {
         return mOutput;
     }
@@ -52,7 +50,6 @@ public abstract class ChronosOperationResult<ResultType> {
      */
     @SuppressWarnings("unused")
     @Nullable
-    @Contract(pure = true)
     public final Exception getException() {
         return mException;
     }
@@ -69,7 +66,6 @@ public abstract class ChronosOperationResult<ResultType> {
      */
     @SuppressWarnings("unused")
     @NonNull
-    @Contract(pure = true)
     public final ChronosOperation<ResultType> getOperation() {
         return mOperation;
     }
@@ -86,7 +82,6 @@ public abstract class ChronosOperationResult<ResultType> {
      * description.
      */
     @Nullable
-    @Contract(pure = true)
     public final String getErrorMessage() {
         return mException == null ? null : mException.getMessage();
     }
@@ -96,7 +91,6 @@ public abstract class ChronosOperationResult<ResultType> {
      * otherwise
      */
     @SuppressWarnings("unused")
-    @Contract(pure = true)
     public final boolean isSuccessful() {
         return mException == null;
     }
@@ -105,7 +99,6 @@ public abstract class ChronosOperationResult<ResultType> {
      * @return the unique id of operation launch.
      * @see #setId(int)
      */
-    @Contract(pure = true)
     final int getId() {
         return mId;
     }
@@ -121,7 +114,6 @@ public abstract class ChronosOperationResult<ResultType> {
     /**
      * @return <b>true</b> if the object should be broadcasted, <b>false</b> otherwise
      */
-    @Contract(pure = true)
     final boolean isBroadcast() {
         return isBroadcast;
     }

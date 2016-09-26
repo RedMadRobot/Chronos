@@ -5,7 +5,6 @@ import com.redmadrobot.chronos.ChronosOperationResult;
 import com.redmadrobot.chronos.TestSettings;
 import com.redmadrobot.chronos.mock.BigObject;
 
-import org.jetbrains.annotations.Contract;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,7 +20,6 @@ public final class HeavyOperation extends ChronosOperation<BigObject> {
 
     private boolean hasOutOfMemory = false;
 
-    @Contract(pure = true)
     public final boolean gotOutOfMemory() {
         return hasOutOfMemory;
     }

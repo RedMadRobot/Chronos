@@ -4,7 +4,6 @@ import com.redmadrobot.chronos.Chronos;
 import com.redmadrobot.chronos.ChronosConnector;
 import com.redmadrobot.chronos.ChronosOperation;
 
-import org.jetbrains.annotations.Contract;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -218,7 +217,6 @@ public abstract class MockActivity {
      * @return {@code true} if the operation is running, {@code false} otherwise
      */
     @SuppressWarnings("unused")
-    @Contract(pure = true)
     public final boolean isOperationRunning(final int id) {
         return mHelper.isOperationRunning(id);
     }
@@ -231,7 +229,6 @@ public abstract class MockActivity {
      * there was no operation launch with the tag at all
      */
     @SuppressWarnings("unused")
-    @Contract(pure = true)
     public final boolean isOperationRunning(@NonNull final String tag) {
         return mHelper.isOperationRunning(tag);
     }

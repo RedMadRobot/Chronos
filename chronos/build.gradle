@@ -36,7 +36,7 @@ install {
                 packaging 'aar'
 
                 // Add your description here
-                name 'Chronos'
+                name 'Chronos for Kotlin'
                 description 'Android library that handles asynchronous tasks in a proper way'
                 url siteUrl
 
@@ -49,9 +49,9 @@ install {
                 }
                 developers {
                     developer {
-                        id 'm_efimov'
-                        name 'Maxim Efimov'
-                        email 'me@redmadrobot.com'
+                        id 'ejohnic'
+                        name 'Evgeniy Gaponov'
+                        email 'e.gaponov@redmadrobot.com'
                     }
                 }
                 scm {
@@ -71,8 +71,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:support-annotations:23.1.1'
     compile 'de.greenrobot:eventbus:2.4.0'
-    compile 'org.jetbrains:annotations:13.0'
-    
+
     testCompile 'junit:junit:4.12'
 }
 
@@ -115,7 +114,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "chronos"
+        name = "chronos-kotlin"
         desc = 'Android library that handles asynchronous tasks in a proper way'
         websiteUrl = siteUrl
         vcsUrl = gitUrl

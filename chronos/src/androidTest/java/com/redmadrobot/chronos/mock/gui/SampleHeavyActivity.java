@@ -3,7 +3,6 @@ package com.redmadrobot.chronos.mock.gui;
 import com.redmadrobot.chronos.mock.operation.HeavyOperation;
 import com.redmadrobot.chronos.mock.operation.HeavyOperationResult;
 
-import org.jetbrains.annotations.Contract;
 
 /**
  * Mock activity that does memory-consuming operations.
@@ -14,7 +13,6 @@ public final class SampleHeavyActivity extends MockActivity {
 
     private boolean isOutOfMemory = false;
 
-    @Contract(pure = true)
     public boolean isOutOfMemory() {
         return isOutOfMemory;
     }

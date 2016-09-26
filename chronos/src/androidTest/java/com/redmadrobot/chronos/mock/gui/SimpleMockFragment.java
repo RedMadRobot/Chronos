@@ -4,7 +4,6 @@ import com.redmadrobot.chronos.mock.operation.SimpleErrorOperation;
 import com.redmadrobot.chronos.mock.operation.SimpleOperation;
 import com.redmadrobot.chronos.mock.operation.SimpleOperationResult;
 
-import org.jetbrains.annotations.Contract;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -90,12 +89,10 @@ public final class SimpleMockFragment extends MockFragment {
         return mResultObtained;
     }
 
-    @Contract(pure = true)
     public final boolean gotResult() {
         return mResultObtained > 0;
     }
 
-    @Contract(pure = true)
     public final boolean gotBroadcastResult() {
         return mBroadcastResultObtained > 0;
     }

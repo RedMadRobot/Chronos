@@ -1,6 +1,5 @@
 package com.redmadrobot.chronos;
 
-import org.jetbrains.annotations.Contract;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -73,7 +72,6 @@ final class ChronosListener {
      * @param methodName  a required method name
      * @return {@code true} if method can be used as a callback; {@code false} otherwise
      */
-    @Contract(pure = true)
     private static boolean isCallback(@NonNull final Method method,
             @NonNull final Class<?> resultClass,
             @NonNull final String methodName) {
@@ -92,7 +90,6 @@ final class ChronosListener {
     /**
      * @return the id by which the instance can be restored via {@link ChronosListenerManager#getListener(int)}
      */
-    @Contract(pure = true)
     public final int getId() {
         return mId;
     }
@@ -274,7 +271,6 @@ final class ChronosListener {
      * @param id an id of the operation launch
      * @return {@code true} if the operation is running, {@code false} otherwise
      */
-    @Contract(pure = true)
     public final boolean isRunning(final int id) {
         return RunningOperationStorage.getInstance().isOperationRunning(id);
     }
@@ -286,7 +282,6 @@ final class ChronosListener {
      * @return {@code true} if the operation is running, {@code false} if it is not running, or
      * there was no operation launch with the tag at all
      */
-    @Contract(pure = true)
     public final boolean isRunning(@NonNull final String tag) {
         final Integer id = mTaggedRequests.get(tag);
         //noinspection SimplifiableIfStatement
@@ -298,7 +293,6 @@ final class ChronosListener {
     }
 
     @Override
-    @Contract(pure = true)
     public String toString() {
         return "ServiceConnector[id=" + getId() + "]";
     }
@@ -427,13 +421,11 @@ final class ChronosListener {
         }
 
         @NonNull
-        @Contract(pure = true)
         public final ChronosOperationResult<T> getResult() {
             return mResult;
         }
 
         @NonNull
-        @Contract(pure = true)
         public final DeliveryMode getDeliveryMode() {
             return mDeliveryMode;
         }

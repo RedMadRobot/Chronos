@@ -1,6 +1,5 @@
 package com.redmadrobot.chronos.mock;
 
-import org.jetbrains.annotations.Contract;
 
 import android.support.annotation.NonNull;
 
@@ -20,7 +19,6 @@ public final class BigObject {
     }
 
     @NonNull
-    @Contract(pure = true)
     @SuppressWarnings("unused")
     public int[] getData() {
         return mData;
