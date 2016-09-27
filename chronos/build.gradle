@@ -107,9 +107,11 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-    def gpgPassphrase = properties.getProperty("oss.password")
+    def systemEnvUser = System.getenv("bintray.user")
+    def systemEnvKey = System.getenv("bintray.apikey")
+
+    user = systemEnvUser == null ? properties.getProperty("bintray.user") : systemEnvUser
+    key = systemEnvKey == null? properties.getProperty("bintray.apikey") : systemEnvKey
 
     configurations = ['archives']
     pkg {
@@ -120,11 +122,5 @@ bintray {
         vcsUrl = gitUrl
         licenses = ["MIT"]
         publish = true
-        version {
-            gpg {
-                sign = true //Determines whether to GPG sign the files. The default is false
-                passphrase = gpgPassphrase //Optional. The passphrase for GPG signing'
-            }
-        }
     }
 }
