@@ -4,7 +4,7 @@ apply plugin: 'com.jfrog.bintray'
 
 // This is the library version used when deploying the artifact
 version = "1.0.7"
-
+archivesBaseName = "chronos-kotlin"
 
 android {
     compileSdkVersion 23
@@ -15,6 +15,7 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
     }
     buildTypes {
         release {
@@ -23,6 +24,7 @@ android {
         }
     }
 }
+
 
 def siteUrl = 'https://github.com/RedMadRobot/Chronos'      // Homepage URL of the library
 def gitUrl = 'https://github.com/RedMadRobot/Chronos.git'   // Git repository URL
