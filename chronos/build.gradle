@@ -39,6 +39,7 @@ install {
 
                 // Add your description here
                 name 'Chronos for Kotlin'
+                artifactId 'chronos-kotlin'
                 description 'Android library that handles asynchronous tasks in a proper way'
                 url siteUrl
 
