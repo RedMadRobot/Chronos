@@ -5,7 +5,6 @@ apply plugin: 'com.jfrog.bintray'
 // This is the library version used when deploying the artifact
 version = "1.0.7"
 archivesBaseName = "chronos-kotlin"
-
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -53,9 +52,19 @@ install {
                 }
                 developers {
                     developer {
+                        id 'm_efimov'
+                        name 'Maxim Efimov'
+                        email 'me@redmadrobot.com'
+                    }
+                    developer {
                         id 'ejohnic'
                         name 'Evgeniy Gaponov'
                         email 'e.gaponov@redmadrobot.com'
+                    }
+                    developer {
+                        id 'xanderblinov'
+                        name 'Alexander Blinov'
+                        email 'a.blinov@redmadrobot.com'
                     }
                 }
                 scm {
